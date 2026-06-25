@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Выдача чеков</title>
+</head>
+<body>
+    <header>
+        <h1 id="title">Добро пожаловать</h1>
+    </header>
+    <div class="main-content">
+        <button class="btn-receipt" id="receipt-btn" onclick="printReceipt()">Получить чек</button>
+    </div>
+    <footer>
+        <button class="btn-lang active" id="lang-ru" onclick="changeLanguage('ru')">Русский</button>
+        <button class="btn-lang" id="lang-tj" onclick="changeLanguage('tj')">Тоҷикӣ</button>
+        <button class="btn-lang" id="lang-en" onclick="changeLanguage('en')">English</button>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Добро пожаловать",
+                receiptBtn: "Получить чек",
+                alertText: "Чек печатается."
+            },
+            tj: {
+                title: "Хуш омадед",
+                receiptBtn: "Гирифтани чек",
+                alertText: "Чек чоп шуда истодааст."
+            },
+            en: {
+                title: "Welcome",
+                receiptBtn: "Get a receipt",
+                alertText: "Printing receipt."
+            }
+        };
+        let currentLang = 'ru';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('receipt-btn').textContent = translations[lang].receiptBtn;
+            document.querySelectorAll('.btn-lang').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // if (lang === 'ru') document.getElementById('lang-ru').classList.add('active');
+            // if (lang === 'tj') document.getElementById('lang-tj').classList.add('active');
+            // if (lang === 'en') document.getElementById('lang-en').classList.add('active');
+        document.getElementById(`lang-${lang}`).classList.add('active');
+        }
+
+        // function printReceipt() {
+        //     alert(translations[currentLang].alertText);
+        // }
+    </script>
+</body>
+</html>
